@@ -7,11 +7,7 @@ var ssh = require('deploytool-ssh');
 
 module.exports = {
   deploy: function(environment, commit, callback) {
-    if (typeof environment === 'string') {
-      environment = deploytool.environment.load(environment);
-    }
-
-    environment.applyDefaults({
+    deploytool.environment.initialize(environment, {
       type: 'ssh-checkout',
       remoteBranch: '',
       remote: 'origin',
@@ -19,8 +15,9 @@ module.exports = {
       commands: []
     });
 
+
     var config = environment.config;
-    environment.config.remoteBranch = environment.config.remoteBranch || environment.config.branch
+    config.remoteBranch = config.remoteBranch || config.branch;
 
     if (!config.remotePath) {
       callback(new Error('remotePath must be specified'));
