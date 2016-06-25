@@ -15,15 +15,15 @@ module.exports = {
       type: 'ssh-checkout',
       remoteBranch: '',
       remote: 'origin',
-      remoteDir: '',
+      remotePath: '',
       commands: []
     });
 
     var config = environment.config;
     environment.config.remoteBranch = environment.config.remoteBranch || environment.config.branch
 
-    if (!config.remoteDir) {
-      callback(new Error('remoteDir must be specified'));
+    if (!config.remotePath) {
+      callback(new Error('remotePath must be specified'));
 
       return;
     }
