@@ -6,8 +6,11 @@ var deploytool = require('deploytool');
 var ssh = require('deploytool-ssh');
 
 module.exports = {
+  name: 'ssh-checkout',
+  'tag': 'deployment',
+  init: function () {},
   deploy: function(environment, commit, callback) {
-    deploytool.environment.initialize(environment, {
+    deploytool.environment.init(environment, {
       type: 'ssh-checkout',
       remoteBranch: '',
       remote: 'origin',
